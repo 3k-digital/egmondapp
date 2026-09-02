@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const SHARE_URL = 'https://EgmondApp.github.io/ferienwohnung/';
+const SHARE_URL = 'https://3k-digital.github.io/egmondapp/';
 
 const IconShare = () => (
   <svg className="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">

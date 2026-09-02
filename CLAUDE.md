@@ -3,7 +3,7 @@
 ## Commands
 
 ```bash
-npm run dev       # Start Vite dev server (localhost:5173/ferienwohnung/)
+npm run dev       # Start Vite dev server (localhost:5173/egmondapp/)
 npm run build     # Production build → dist/
 npm run preview   # Preview production build locally
 npm run deploy    # Build + publish to GitHub Pages via gh-pages
@@ -28,7 +28,7 @@ Running inside **VS Code with the Claude Code extension** (not CLI). Do not sugg
 ## Key Conventions
 
 - **Date format:** `dd.MM.yyyy` strings. Use `formatDe`/`parseDe` from `src/utils/dateHelpers.js`.
-- **Base path:** `/ferienwohnung/` (vite.config.js). All asset paths need this prefix.
+- **Base path:** `/egmondapp/` (vite.config.js). All asset paths need this prefix.
 - **Design tokens:** Use semantic Tailwind names (`warm`, `offwhite`, `primary`, `anthracite`, `border`, `gold`, `blue`) — no raw hex values.
 - **Fonts:** `DM Serif Display` (headings), `Inter` (body) via Google Fonts in `index.html`.
 - **Admin:** lazy-loaded via `React.lazy` — keep admin components out of the main bundle.

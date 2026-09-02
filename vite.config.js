@@ -14,17 +14,17 @@ export default defineConfig({
         theme_color: '#A70605',
         background_color: '#F2EDE4',
         display: 'standalone',
-        scope: '/ferienwohnung/',
-        start_url: '/ferienwohnung/',
+        scope: '/egmondapp/',
+        start_url: '/egmondapp/',
         icons: [
-          { src: '/ferienwohnung/images/icon-192.png', sizes: '192x192', type: 'image/png', purpose: 'any' },
-          { src: '/ferienwohnung/images/icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any' },
-          { src: '/ferienwohnung/images/icon-maskable.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+          { src: '/egmondapp/images/icon-192.png', sizes: '192x192', type: 'image/png', purpose: 'any' },
+          { src: '/egmondapp/images/icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any' },
+          { src: '/egmondapp/images/icon-maskable.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
         ],
       },
     }),
   ],
-  base: '/ferienwohnung/',
+  base: '/egmondapp/',
   build: {
     outDir: 'dist',
     rollupOptions: {

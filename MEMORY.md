@@ -1,8 +1,8 @@
 # Ferienwohnung – Projektgedächtnis
 
 ## ⚡ Quick Facts
-- **Live:** https://EgmondApp.github.io/ferienwohnung/
-- **Repo:** https://github.com/EgmondApp/ferienwohnung
+- **Live:** https://3k-digital.github.io/egmondapp/
+- **Repo:** https://github.com/3k-digital/egmondapp
 - **Stack:** React + Vite + Tailwind + Firebase Firestore → GitHub Pages
 - **Deploy:** `npm run deploy` (immer erst fragen!)
 - **Firebase:** egmondbelegung, europe-west3, Auth via Firebase Auth (E-Mail/Passwort)
@@ -20,7 +20,7 @@
 
 ## Stack & Deployment
 - React + Vite + Tailwind + Firebase Firestore
-- HashRouter, Base-Path `/ferienwohnung/`
+- HashRouter, Base-Path `/egmondapp/`
 - **Branches:** `main` (Quellcode, Default), `gh-pages` (Build-Output, auto von `npm run deploy`)
 - Deploy: `npm run deploy` → `gh-pages` Branch (Source auf `main`, Build auf `gh-pages`)
 - Firebase CLI: `firebase deploy --only firestore:rules`

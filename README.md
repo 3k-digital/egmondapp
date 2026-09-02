@@ -4,15 +4,15 @@ Web-App für eine einzelne Ferienwohnung.
 Öffentlicher Bereich: Verfügbarkeitskalender + Anfrageformular.
 Admin-Bereich: Belegung verwalten + Anfragen einsehen.
 
-**Live:** https://egmondapp.github.io/ferienwohnung/
+**Live:** https://3k-digital.github.io/egmondapp/
 
 ## Setup
 
 ### 1. Repository klonen & Abhängigkeiten installieren
 
 ```bash
-git clone https://github.com/EgmondApp/ferienwohnung.git
-cd ferienwohnung
+git clone https://github.com/3k-digital/egmondapp.git
+cd egmondapp
 npm install
 ```
 
@@ -60,7 +60,7 @@ Bilder in `public/images/`:
 npm run dev
 ```
 
-Öffnet auf `http://localhost:5173/ferienwohnung/`
+Öffnet auf `http://localhost:5173/egmondapp/`
 
 ## Deployment
 
