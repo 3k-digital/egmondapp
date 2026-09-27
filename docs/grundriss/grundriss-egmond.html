@@ -1,0 +1,406 @@
+<title>Grundriss Egmond</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Instrument+Sans:wght@400;500;600&display=swap">
+<style>
+:root{
+  --paper:#eef1ef; --sheet:#f7f8f6; --ink:#1f2c36; --graphite:#5d6972;
+  --pencil:#2c6db0; --poche-bg:#d5dbdb; --rule:#c9d0cf; --muted:#56626b;
+  --hand:'Architects Daughter','Comic Sans MS','Segoe Print',cursive;
+  --sans:'Instrument Sans','Segoe UI',system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#14191d; --sheet:#1a2126; --ink:#e3e9ec; --graphite:#96a3ab;
+    --pencil:#86b8ea; --poche-bg:#2b343a; --rule:#2e383e; --muted:#9aa7ae;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#14191d; --sheet:#1a2126; --ink:#e3e9ec; --graphite:#96a3ab;
+  --pencil:#86b8ea; --poche-bg:#2b343a; --rule:#2e383e; --muted:#9aa7ae;
+  color-scheme:dark;
+}
+body{background:var(--paper);color:var(--ink);font:15px/1.55 var(--sans);padding-inline:16px;padding-block:28px 48px}
+.wrap{max-width:980px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+header{display:flex;flex-direction:column;gap:6px}
+.eyebrow{font:500 12px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h1{font:400 clamp(28px,5vw,40px)/1.1 var(--hand);margin:0;text-wrap:balance}
+.lede{margin:0;max-width:62ch;color:var(--muted)}
+figure{margin:0;background:var(--sheet);border:1px solid var(--rule);border-radius:4px;display:flex;flex-direction:column}
+.plan{overflow-x:auto;padding:12px 8px 0}
+.plan svg{display:block;width:100%;min-width:600px;height:auto;margin:0 auto;max-width:860px}
+.titleblock{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));border-top:1px solid var(--rule)}
+.titleblock div{padding:10px 14px;border-right:1px solid var(--rule);display:flex;flex-direction:column;gap:2px}
+.titleblock div:last-child{border-right:0}
+.titleblock span{font:500 10.5px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.titleblock b{font:400 15px var(--hand)}
+figcaption{padding:12px 14px 14px;border-top:1px solid var(--rule);color:var(--muted);font-size:14px}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px}
+h2{font:400 22px var(--hand);margin:0 0 10px}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:7px 8px 7px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font:500 11px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+td.num{white-space:nowrap}
+td.ph{color:var(--muted);font-size:13.5px}
+tfoot td{border-bottom:0;font-weight:600}
+ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px}
+.unsure-k{color:var(--pencil)}
+.key{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:13.5px;color:var(--muted);padding:0 14px 12px}
+.key s{display:inline-block;width:22px;height:0;border-top:2px dotted var(--pencil);vertical-align:middle;margin-right:6px}
+.key i{display:inline-block;width:22px;height:0;border-top:1.5px dashed var(--pencil);vertical-align:middle;margin-right:6px}
+.key em{font-style:normal;display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:16px;border:1.2px solid var(--pencil);border-radius:9px;color:var(--pencil);font-size:10px;margin-right:6px;padding:0 3px}
+
+/* plan drawing */
+.wall{fill:url(#poche);stroke:var(--ink);stroke-width:1.4}
+.brick{fill:url(#poche);stroke:var(--ink);stroke-width:1.1}
+.pocheBg{fill:var(--poche-bg)}
+.pocheLn{stroke:var(--ink);stroke-width:.7;opacity:.5}
+.thin{fill:var(--sheet);stroke:var(--ink);stroke-width:.9}
+.leaf{stroke:var(--ink);stroke-width:1.7}
+.swing{fill:none;stroke:var(--graphite);stroke-width:.8;stroke-dasharray:3 2}
+.panel{fill:var(--sheet);stroke:var(--ink);stroke-width:1}
+.furn{fill:var(--sheet);stroke:var(--graphite);stroke-width:1}
+.furn2{fill:none;stroke:var(--graphite);stroke-width:.8}
+.deck{fill:url(#deck)}
+.deckLn{stroke:var(--graphite);stroke-width:.5;opacity:.55}
+.rail{stroke:var(--ink);stroke-width:1.2;stroke-dasharray:9 2 1.5 2}
+.awning{fill:none;stroke:var(--graphite);stroke-width:.8;stroke-dasharray:6 4}
+.pit{fill:url(#dots);stroke:var(--graphite);stroke-width:1}
+.dotFill{fill:var(--graphite);opacity:.55}
+.grille{fill:url(#grill);stroke:var(--graphite);stroke-width:.6}
+.unsure{fill:none;stroke:var(--pencil);stroke-width:1.3;stroke-dasharray:5 4}
+.noteline{stroke:var(--pencil);stroke-width:1}
+.note{fill:var(--pencil);font:13px var(--hand)}
+.note2{fill:var(--graphite);font:12.5px var(--hand)}
+.room{fill:var(--ink);font:15.5px var(--hand)}
+.area{fill:var(--graphite);font:11.5px var(--hand)}
+.tiny{fill:var(--graphite);font:10px var(--hand)}
+.dim{stroke:var(--graphite);stroke-width:.7}
+.dimtick{stroke:var(--ink);stroke-width:1.3}
+.dimtxt{fill:var(--graphite);font:11px var(--hand)}
+.constr{stroke:var(--graphite);stroke-width:.5;opacity:.7}
+.surround{fill:var(--pencil);font:12.5px var(--hand);letter-spacing:.12em}
+.cam{fill:var(--sheet);stroke:var(--pencil);stroke-width:1.1}
+.camtxt{fill:var(--pencil);font:600 8.5px var(--sans)}
+.camray{stroke:var(--pencil);stroke-width:1.1}
+.camHeadFill{fill:var(--pencil)}
+.bedout{fill:none;stroke:var(--graphite);stroke-width:1;stroke-dasharray:4 3}
+.route{fill:none;stroke:var(--pencil);stroke-width:1.3;stroke-dasharray:1.5 4;stroke-linecap:round}
+.solid{fill:var(--ink)}
+.hollow{fill:var(--sheet);stroke:var(--ink);stroke-width:1}
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Egmond aan Zee · Kennedyboulevard · 2. Etage</span>
+    <h1>Grundriss der Ferienwohnung</h1>
+    <p class="lede">Rekonstruiert aus den Fotos der Galerie und aus Ortskenntnis, weil die Originalpläne von 1970 fehlen. Die Maße sind aus Möbeln geschätzt.</p>
+  </header>
+
+  <figure>
+    <div class="plan">
+<svg viewBox="0 0 680 839" role="img" aria-label="Grundriss-Skizze der Ferienwohnung: Schlafzimmer mit Westbalkon im Nordwesten, östlich davon Bad, WC und der Flur mit Wohnungstür, darunter Küche mit geschwungenem Tresen und der Wohn- und Essraum mit Sitzgrube und Südbalkon.">
+<defs>
+  <filter id="rough" x="-5%" y="-5%" width="110%" height="110%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="2.6" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+  <pattern id="poche" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <rect width="5" height="5" class="pocheBg"/>
+    <line x1="0" y1="0" x2="0" y2="5" class="pocheLn"/>
+  </pattern>
+  <pattern id="deck" width="6" height="6" patternUnits="userSpaceOnUse">
+    <line x1="0" y1="0" x2="0" y2="6" class="deckLn"/>
+  </pattern>
+  <pattern id="dots" width="7" height="7" patternUnits="userSpaceOnUse">
+    <circle cx="3.5" cy="3.5" r="0.8" class="dotFill"/>
+  </pattern>
+  <pattern id="grill" width="3" height="3" patternUnits="userSpaceOnUse">
+    <line x1="0" y1="0" x2="0" y2="3" class="deckLn"/>
+  </pattern>
+  <marker id="camhead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M0 0 L10 5 L0 10 Z" class="camHeadFill"/>
+  </marker>
+</defs>
+<g filter="url(#rough)">
+<rect class="deck" x="65.8" y="102.2" width="76.4" height="253.8" rx="0.0"/>
+<line class="rail" x1="65.8" y1="102.2" x2="65.8" y2="356.0"/>
+<line class="rail" x1="65.8" y1="356.0" x2="142.2" y2="356.0"/>
+<rect class="brick" x="65.8" y="88.2" width="76.4" height="14.0" rx="0.0"/>
+<rect class="deck" x="157.8" y="665.4" width="325.0" height="96.2" rx="0.0"/>
+<line class="rail" x1="157.8" y1="761.6" x2="490.6" y2="761.6"/>
+<line class="rail" x1="490.6" y1="665.4" x2="490.6" y2="761.6"/>
+<rect class="brick" x="142.2" y="657.6" width="15.6" height="104.0" rx="0.0"/>
+<rect class="awning" x="163.0" y="668.0" width="239.2" height="75.4"/>
+<rect class="wall" x="142.2" y="88.2" width="379.6" height="15.6"/>
+<rect class="wall" x="506.2" y="88.2" width="15.6" height="98.8"/>
+<rect class="wall" x="506.2" y="171.4" width="13.0" height="15.6"/>
+<rect class="wall" x="571.2" y="171.4" width="23.4" height="15.6"/>
+<rect class="wall" x="579.0" y="171.4" width="15.6" height="140.4"/>
+<rect class="wall" x="475.0" y="296.2" width="119.6" height="15.6"/>
+<rect class="wall" x="475.0" y="296.2" width="15.6" height="369.2"/>
+<rect class="wall" x="142.2" y="649.8" width="23.4" height="15.6"/>
+<rect class="wall" x="425.6" y="649.8" width="65.0" height="15.6"/>
+<rect class="wall" x="142.2" y="88.2" width="15.6" height="54.6"/>
+<rect class="wall" x="142.2" y="174.0" width="15.6" height="5.2"/>
+<rect class="wall" x="142.2" y="257.2" width="15.6" height="114.4"/>
+<rect class="wall" x="142.2" y="413.2" width="15.6" height="114.4"/>
+<rect class="wall" x="142.2" y="636.8" width="15.6" height="28.6"/>
+<rect class="wall" x="146.9" y="300.9" width="193.4" height="6.2"/>
+<rect class="wall" x="334.1" y="92.9" width="6.2" height="94.1"/>
+<rect class="wall" x="334.1" y="228.6" width="6.2" height="78.5"/>
+<rect class="wall" x="334.1" y="176.1" width="62.9" height="6.2"/>
+<rect class="wall" x="436.0" y="176.1" width="28.6" height="6.2"/>
+<rect class="wall" x="501.0" y="176.1" width="16.1" height="6.2"/>
+<rect class="wall" x="438.1" y="92.9" width="6.2" height="89.4"/>
+<rect class="wall" x="334.1" y="300.9" width="8.3" height="6.2"/>
+<rect class="wall" x="407.4" y="300.9" width="7.8" height="6.2"/>
+<rect class="wall" x="477.6" y="300.9" width="8.3" height="6.2"/>
+<rect class="thin" x="142.2" y="142.8" width="15.6" height="31.2"/>
+<line class="thin" x1="150.0" y1="142.8" x2="150.0" y2="174.0"/>
+<rect class="thin" x="142.2" y="371.6" width="15.6" height="41.6"/>
+<line class="thin" x1="150.0" y1="371.6" x2="150.0" y2="413.2"/>
+<rect class="thin" x="142.2" y="527.6" width="15.6" height="109.2"/>
+<line class="thin" x1="150.0" y1="527.6" x2="150.0" y2="636.8"/>
+<rect class="thin" x="311.2" y="649.8" width="114.4" height="15.6"/>
+<line class="thin" x1="311.2" y1="657.6" x2="425.6" y2="657.6"/>
+<line class="leaf" x1="571.2" y1="179.2" x2="571.2" y2="231.2"/>
+<path class="swing" d="M571.2 231.2 A52.0 52.0 0 0 1 519.2 179.2"/>
+<line class="leaf" x1="337.2" y1="187.0" x2="295.6" y2="187.0"/>
+<path class="swing" d="M295.6 187.0 A41.6 41.6 0 0 0 337.2 228.6"/>
+<line class="leaf" x1="436.0" y1="179.2" x2="436.0" y2="218.2"/>
+<path class="swing" d="M436.0 218.2 A39.0 39.0 0 0 1 397.0 179.2"/>
+<line class="leaf" x1="464.6" y1="179.2" x2="464.6" y2="215.6"/>
+<path class="swing" d="M464.6 215.6 A36.4 36.4 0 0 0 501.0 179.2"/>
+<rect class="panel" x="145.0" y="179.2" width="3.1" height="44.2"/>
+<rect class="panel" x="151.9" y="213.0" width="3.1" height="44.2"/>
+<rect class="panel" x="165.6" y="652.6" width="78.0" height="3.1"/>
+<rect class="panel" x="233.2" y="659.5" width="78.0" height="3.1"/>
+<rect class="panel" x="342.4" y="301.1" width="37.7" height="3.1"/>
+<rect class="panel" x="369.7" y="303.8" width="37.7" height="3.1"/>
+<rect class="panel" x="415.2" y="301.1" width="36.4" height="3.1"/>
+<rect class="panel" x="441.2" y="303.8" width="36.4" height="3.1"/>
+<rect class="furn" x="157.8" y="102.2" width="104.0" height="44.7" rx="0.0"/>
+<rect class="furn2" x="160.4" y="106.4" width="18.2" height="36.4" rx="3.1"/>
+<rect class="furn" x="157.8" y="253.0" width="104.0" height="44.7" rx="0.0"/>
+<rect class="furn2" x="160.4" y="257.2" width="18.2" height="36.4" rx="3.1"/>
+<rect class="furn" x="306.0" y="249.4" width="28.1" height="49.9" rx="0.0"/>
+<line class="furn2" x1="306.0" y1="274.4" x2="334.1" y2="274.4"/>
+<rect class="furn2" x="320.6" y="101.2" width="13.5" height="42.6" rx="0.0"/>
+<text class="tiny" x="209.8" y="128.8" text-anchor="middle">90 × 200</text>
+<text class="tiny" x="209.8" y="279.6" text-anchor="middle">90 × 200</text>
+<rect class="furn" x="159.4" y="308.2" width="148.2" height="31.2" rx="0.0"/>
+<circle class="furn2" cx="228.0" cy="317.0" r="4.7"/>
+<circle class="furn2" cx="243.6" cy="317.0" r="4.7"/>
+<circle class="furn2" cx="228.0" cy="331.0" r="4.7"/>
+<circle class="furn2" cx="243.6" cy="331.0" r="4.7"/>
+<text class="tiny" x="277.4" y="327.9" text-anchor="middle">KS</text>
+<line class="furn2" x1="261.8" y1="308.2" x2="261.8" y2="339.4"/>
+<path class="furn" d="M191.6 423.6 L264.4 423.6 Q334.6 423.6 334.6 353.4 L306.0 353.4 Q306.0 393.4 264.4 393.4 L191.6 393.4 Z"/>
+<path class="furn2" d="M183.8 436.6 L264.4 436.6 Q347.6 436.6 347.6 353.4"/>
+<rect class="furn2" x="217.6" y="397.6" width="28.6" height="20.8" rx="2.6"/>
+<circle class="furn" cx="204.6" cy="453.8" r="8.3"/>
+<circle class="furn" cx="243.6" cy="453.8" r="8.3"/>
+<circle class="furn" cx="290.4" cy="449.6" r="8.3"/>
+<circle class="furn" cx="337.2" cy="418.4" r="8.3"/>
+<circle class="furn" cx="360.6" cy="374.2" r="8.3"/>
+<ellipse class="furn" cx="220.2" cy="584.8" rx="42.6" ry="23.9"/>
+<rect class="furn" x="186.9" y="538.0" width="25.0" height="22.9" rx="6.2"/>
+<rect class="furn" x="228.5" y="538.0" width="25.0" height="22.9" rx="6.2"/>
+<rect class="furn" x="186.9" y="608.7" width="25.0" height="22.9" rx="6.2"/>
+<rect class="furn" x="228.5" y="608.7" width="25.0" height="22.9" rx="6.2"/>
+<rect class="furn" x="262.3" y="573.4" width="25.0" height="22.9" rx="6.2"/>
+<rect class="furn" x="212.4" y="478.2" width="83.2" height="39.0" rx="13.0"/>
+<rect class="grille" x="165.6" y="638.4" width="187.2" height="10.4"/>
+<rect class="pit" x="358.0" y="527.6" width="122.2" height="117.0" rx="0.0"/>
+<rect class="furn" x="443.8" y="527.6" width="36.4" height="117.0" rx="0.0"/>
+<rect class="furn" x="376.2" y="527.6" width="67.6" height="36.4" rx="0.0"/>
+<rect class="furn" x="376.2" y="608.2" width="67.6" height="36.4" rx="0.0"/>
+<line class="furn" x1="358.0" y1="564.0" x2="358.0" y2="608.2"/>
+<line class="furn2" x1="367.4" y1="564.0" x2="367.4" y2="608.2"/>
+<line class="furn2" x1="376.2" y1="564.0" x2="376.2" y2="608.2"/>
+<text class="note2" x="410.0" y="591.0" text-anchor="middle">Sitzgrube</text>
+<rect class="bedout" x="391.8" y="423.6" width="41.6" height="104.0" rx="0.0"/>
+<rect class="bedout" x="438.6" y="423.6" width="41.6" height="104.0" rx="0.0"/>
+<text class="tiny" x="436.0" y="470.4" text-anchor="middle">Ausziehbetten</text>
+<text class="tiny" x="436.0" y="483.4" text-anchor="middle">2 × 80 × 200</text>
+<text class="tiny" x="436.0" y="496.4" text-anchor="middle">ausgezogen</text>
+<rect class="furn" x="560.8" y="192.2" width="21.8" height="67.6" rx="0.0"/>
+<line class="furn2" x1="560.8" y1="226.0" x2="582.6" y2="226.0"/>
+<rect class="furn2" x="501.0" y="286.3" width="44.2" height="13.5" rx="0.0"/>
+<circle class="furn2" cx="566.0" cy="280.6" r="6.8"/>
+<path class="furn" d="M343.4 103.8 L390.2 103.8 A46.8 46.8 0 0 1 343.4 150.6 Z"/>
+<circle class="furn2" cx="355.4" cy="115.8" r="2.1"/>
+<path class="furn" d="M407.4 103.8 A13.0 16.6 0 0 0 433.4 103.8 Z"/>
+<rect class="furn" x="467.2" y="102.2" width="21.8" height="10.4" rx="0.0"/>
+<ellipse class="furn" cx="478.1" cy="127.2" rx="9.9" ry="14.0"/>
+<text class="room" x="230.6" y="205.2" text-anchor="middle">Schlafzimmer</text>
+<text class="area" x="230.6" y="223.9" text-anchor="middle">ca. 14 m²</text>
+<text class="room" x="202.0" y="370.6" text-anchor="middle">Küche</text>
+<text class="area" x="202.0" y="389.3" text-anchor="middle">ca. 8 m²</text>
+<text class="room" x="306.0" y="535.4" text-anchor="middle">Wohnen · Essen</text>
+<text class="area" x="306.0" y="554.1" text-anchor="middle">ca. 35 m²</text>
+<text class="room" x="441.2" y="265.0" text-anchor="middle">Flur</text>
+<text class="area" x="441.2" y="283.7" text-anchor="middle">ca. 11,5 m²</text>
+<text class="room" x="412.6" y="153.2" text-anchor="middle">Bad</text>
+<text class="room" x="494.2" y="161.0" text-anchor="middle">WC</text>
+<text class="room" x="103.2" y="226.0" text-anchor="middle" transform="rotate(-90 103.2 226.0)">Westbalkon</text>
+<text class="area" x="123.0" y="226.0" text-anchor="middle" transform="rotate(-90 123.0 226.0)">ca. 7,5 m²</text>
+<text class="room" x="316.4" y="705.4" text-anchor="middle">Südbalkon</text>
+<text class="area" x="316.4" y="724.2" text-anchor="middle">ca. 13 m²</text>
+<text class="tiny" x="274.8" y="741.8" text-anchor="middle">Markise elektr.</text>
+<rect class="unsure" x="134.4" y="369.0" width="31.2" height="46.8" rx="5"/>
+<text class="note" x="128.2" y="387.2" text-anchor="end">Fenster:</text>
+<text class="note" x="128.2" y="405.4" text-anchor="end">Lage geschätzt</text>
+<path class="route" d="M545.2 189.6 L545.2 210.4 Q545.2 228.6 524.4 228.6 L363.2 228.6" marker-end="url(#camhead)"/>
+<line class="camray" x1="297.5" y1="585.6" x2="279.6" y2="598.1" marker-end="url(#camhead)"/>
+<rect class="cam" x="295.2" y="569.2" width="21.6" height="20.8" rx="10.4"/>
+<text class="camtxt" x="306.0" y="583.2" text-anchor="middle">3·5</text>
+<line class="camray" x1="248.8" y1="379.4" x2="248.8" y2="401.2" marker-end="url(#camhead)"/>
+<rect class="cam" x="238.4" y="358.6" width="20.8" height="20.8" rx="10.4"/>
+<text class="camtxt" x="248.8" y="372.6" text-anchor="middle">2</text>
+<line class="camray" x1="230.2" y1="626.8" x2="245.6" y2="611.4" marker-end="url(#camhead)"/>
+<rect class="cam" x="212.4" y="623.8" width="20.8" height="20.8" rx="10.4"/>
+<text class="camtxt" x="222.8" y="637.8" text-anchor="middle">4</text>
+<line class="camray" x1="360.6" y1="343.0" x2="338.8" y2="343.0" marker-end="url(#camhead)"/>
+<rect class="cam" x="360.6" y="332.6" width="20.8" height="20.8" rx="10.4"/>
+<text class="camtxt" x="371.0" y="346.6" text-anchor="middle">1</text>
+<line class="camray" x1="274.8" y1="246.8" x2="253.0" y2="246.8" marker-end="url(#camhead)"/>
+<rect class="cam" x="274.8" y="236.4" width="20.8" height="20.8" rx="10.4"/>
+<text class="camtxt" x="285.2" y="250.4" text-anchor="middle">8</text>
+<line class="camray" x1="180.2" y1="218.2" x2="202.0" y2="218.2" marker-end="url(#camhead)"/>
+<rect class="cam" x="159.4" y="207.8" width="20.8" height="20.8" rx="10.4"/>
+<text class="camtxt" x="169.8" y="221.8" text-anchor="middle">9</text>
+<line class="camray" x1="535.9" y1="254.1" x2="516.4" y2="263.8" marker-end="url(#camhead)"/>
+<rect class="cam" x="534.8" y="239.0" width="20.8" height="20.8" rx="10.4"/>
+<text class="camtxt" x="545.2" y="253.0" text-anchor="middle">13</text>
+<line class="camray" x1="381.7" y1="268.9" x2="398.8" y2="255.3" marker-end="url(#camhead)"/>
+<rect class="cam" x="363.2" y="265.0" width="20.8" height="20.8" rx="10.4"/>
+<text class="camtxt" x="373.6" y="279.0" text-anchor="middle">14</text>
+<line class="camray" x1="373.2" y1="153.6" x2="366.9" y2="132.7" marker-end="url(#camhead)"/>
+<rect class="cam" x="360.2" y="153.2" width="32.0" height="20.8" rx="10.4"/>
+<text class="camtxt" x="376.2" y="167.2" text-anchor="middle">10·12</text>
+<line class="camray" x1="482.8" y1="239.0" x2="482.8" y2="217.2" marker-end="url(#camhead)"/>
+<rect class="cam" x="472.4" y="239.0" width="20.8" height="20.8" rx="10.4"/>
+<text class="camtxt" x="482.8" y="253.0" text-anchor="middle">11</text>
+<line class="camray" x1="370.2" y1="701.2" x2="362.9" y2="721.8" marker-end="url(#camhead)"/>
+<rect class="cam" x="362.8" y="681.0" width="21.6" height="20.8" rx="10.4"/>
+<text class="camtxt" x="373.6" y="695.0" text-anchor="middle">6·7</text>
+<line class="dim" x1="150.0" y1="58.6" x2="586.8" y2="58.6"/>
+<line class="dim" x1="150.0" y1="51.3" x2="150.0" y2="65.8"/>
+<line class="dimtick" x1="145.8" y1="62.7" x2="154.2" y2="54.4"/>
+<line class="dim" x1="586.8" y1="51.3" x2="586.8" y2="65.8"/>
+<line class="dimtick" x1="582.6" y1="62.7" x2="591.0" y2="54.4"/>
+<text class="dimtxt" x="368.4" y="51.3" text-anchor="middle">ca. 8,4 m</text>
+<line class="dim" x1="150.0" y1="77.3" x2="337.2" y2="77.3"/>
+<line class="dim" x1="150.0" y1="70.0" x2="150.0" y2="84.6"/>
+<line class="dimtick" x1="145.8" y1="81.4" x2="154.2" y2="73.1"/>
+<line class="dim" x1="337.2" y1="70.0" x2="337.2" y2="84.6"/>
+<line class="dimtick" x1="333.0" y1="81.4" x2="341.4" y2="73.1"/>
+<text class="dimtxt" x="243.6" y="70.0" text-anchor="middle">ca. 3,6 m</text>
+<line class="dim" x1="150.0" y1="785.0" x2="482.8" y2="785.0"/>
+<line class="dim" x1="150.0" y1="777.7" x2="150.0" y2="792.3"/>
+<line class="dimtick" x1="145.8" y1="789.2" x2="154.2" y2="780.8"/>
+<line class="dim" x1="482.8" y1="777.7" x2="482.8" y2="792.3"/>
+<line class="dimtick" x1="478.6" y1="789.2" x2="487.0" y2="780.8"/>
+<text class="dimtxt" x="316.4" y="777.7" text-anchor="middle">ca. 6,4 m</text>
+<line class="dim" x1="618.0" y1="96.0" x2="618.0" y2="304.0"/>
+<line class="dim" x1="610.7" y1="96.0" x2="625.3" y2="96.0"/>
+<line class="dimtick" x1="613.8" y1="100.2" x2="622.2" y2="91.8"/>
+<line class="dim" x1="610.7" y1="304.0" x2="625.3" y2="304.0"/>
+<line class="dimtick" x1="613.8" y1="308.2" x2="622.2" y2="299.8"/>
+<text class="dimtxt" x="628.4" y="200.0" text-anchor="middle" transform="rotate(90 628.4 200.0)">ca. 4 m</text>
+<line class="dim" x1="514.0" y1="304.0" x2="514.0" y2="657.6"/>
+<line class="dim" x1="506.7" y1="304.0" x2="521.3" y2="304.0"/>
+<line class="dimtick" x1="509.8" y1="308.2" x2="518.2" y2="299.8"/>
+<line class="dim" x1="506.7" y1="657.6" x2="521.3" y2="657.6"/>
+<line class="dimtick" x1="509.8" y1="661.8" x2="518.2" y2="653.4"/>
+<text class="dimtxt" x="524.4" y="480.8" text-anchor="middle" transform="rotate(90 524.4 480.8)">ca. 6,8 m</text>
+<line class="dim" x1="514.0" y1="657.6" x2="514.0" y2="761.6"/>
+<line class="dim" x1="506.7" y1="657.6" x2="521.3" y2="657.6"/>
+<line class="dimtick" x1="509.8" y1="661.8" x2="518.2" y2="653.4"/>
+<line class="dim" x1="506.7" y1="761.6" x2="521.3" y2="761.6"/>
+<line class="dimtick" x1="509.8" y1="765.8" x2="518.2" y2="757.4"/>
+<text class="dimtxt" x="524.4" y="709.6" text-anchor="middle" transform="rotate(90 524.4 709.6)">ca. 2 m</text>
+<line class="constr" x1="126.6" y1="96.0" x2="173.4" y2="96.0"/>
+<line class="constr" x1="150.0" y1="72.6" x2="150.0" y2="119.4"/>
+<line class="constr" x1="490.6" y1="96.0" x2="537.4" y2="96.0"/>
+<line class="constr" x1="514.0" y1="72.6" x2="514.0" y2="119.4"/>
+<line class="constr" x1="563.4" y1="179.2" x2="610.2" y2="179.2"/>
+<line class="constr" x1="586.8" y1="155.8" x2="586.8" y2="202.6"/>
+<line class="constr" x1="563.4" y1="304.0" x2="610.2" y2="304.0"/>
+<line class="constr" x1="586.8" y1="280.6" x2="586.8" y2="327.4"/>
+<line class="constr" x1="459.4" y1="304.0" x2="506.2" y2="304.0"/>
+<line class="constr" x1="482.8" y1="280.6" x2="482.8" y2="327.4"/>
+<line class="constr" x1="459.4" y1="657.6" x2="506.2" y2="657.6"/>
+<line class="constr" x1="482.8" y1="634.2" x2="482.8" y2="681.0"/>
+<line class="constr" x1="126.6" y1="657.6" x2="173.4" y2="657.6"/>
+<line class="constr" x1="150.0" y1="634.2" x2="150.0" y2="681.0"/>
+<text class="surround" x="17.4" y="491.2" text-anchor="middle" transform="rotate(-90 17.4 491.2)">NORDSEE · STRAND  →  Westen</text>
+<text class="surround" x="316.4" y="818.8" text-anchor="middle">Dünen  ·  Süden</text>
+<text class="tiny" x="527.0" y="140.2" text-anchor="start">Zugang vom</text>
+<text class="tiny" x="527.0" y="153.2" text-anchor="start">Treppenhaus</text>
+</g>
+<g class="north"><circle cx="649.2" cy="70.0" r="20" class="thin"/><path d="M649.2 46.0 L656.2 78.0 L649.2 73.0 Z" class="solid"/><path d="M649.2 46.0 L642.2 78.0 L649.2 73.0 Z" class="hollow"/><text x="649.2" y="108.0" text-anchor="middle" class="room">N</text></g>
+<rect class="solid" x="508.8" y="816.2" width="52.0" height="6"/>
+<rect class="hollow" x="560.8" y="816.2" width="52.0" height="6"/>
+<rect class="solid" x="612.8" y="816.2" width="52.0" height="6"/>
+<text class="tiny" x="508.8" y="811.2" text-anchor="middle">0</text>
+<text class="tiny" x="560.8" y="811.2" text-anchor="middle">1</text>
+<text class="tiny" x="612.8" y="811.2" text-anchor="middle">2</text>
+<text class="tiny" x="664.8" y="811.2" text-anchor="middle">3</text>
+<text class="tiny" x="672.8" y="822.2" text-anchor="start">m</text>
+</svg>
+    </div>
+    <div class="key">
+      <span><em>8</em>Standpunkt und Blickrichtung von Foto innen-8</span>
+      <span><s></s>Weg von der Wohnungstür: rechts WC, dann Bad</span>
+      <span><i></i>Lage geschätzt</span>
+    </div>
+    <div class="titleblock">
+      <div><span>Plan</span><b>Grundriss, Norden oben</b></div>
+      <div><span>Grundlage</span><b>Galeriefotos und Ortskenntnis</b></div>
+      <div><span>Maßbezug</span><b>Bett 90 × 200, Tür 80 cm</b></div>
+      <div><span>Stand</span><b>27.09.2026, Skizze v3</b></div>
+    </div>
+    <figcaption>Die Wohnung ist abgestuft: Im Norden liegen Schlafzimmer, Bad, WC und der Flur mit der Wohnungstür nebeneinander. Eine zweiflügelige Schiebetür trennt den Flur vom Wohnraum. Darunter liegen die Küche mit geschwungenem Tresen und der Wohn- und Essraum, dessen Südbalkon über die ganze Breite der Südfassade läuft.</figcaption>
+  </figure>
+
+  <div class="cols">
+    <section>
+      <h2>Räume</h2>
+      <table>
+        <thead><tr><th>Raum</th><th>Fläche</th><th>Belegfotos</th></tr></thead>
+        <tbody>
+          <tr><td>Wohnen · Essen mit Sitzgrube</td><td class="num">ca. 35 m²</td><td class="ph">innen-2, -3, -4, -5</td></tr>
+          <tr><td>Schlafzimmer</td><td class="num">ca. 14 m²</td><td class="ph">innen-8, -9</td></tr>
+          <tr><td>Küche mit Bartresen</td><td class="num">ca. 8 m²</td><td class="ph">innen-1, -2</td></tr>
+          <tr><td>Flur</td><td class="num">ca. 11,5 m²</td><td class="ph">innen-13, -14</td></tr>
+          <tr><td>Bad</td><td class="num">ca. 3 m²</td><td class="ph">innen-10, -12</td></tr>
+          <tr><td>WC</td><td class="num">ca. 2 m²</td><td class="ph">innen-11</td></tr>
+          <tr><td>Südbalkon</td><td class="num">ca. 13 m²</td><td class="ph">innen-5, -6, -7</td></tr>
+          <tr><td>Westbalkon</td><td class="num">ca. 7,5 m²</td><td class="ph">innen-8</td></tr>
+        </tbody>
+        <tfoot><tr><td>Wohnfläche innen</td><td class="num">ca. 75 m²</td><td></td></tr></tfoot>
+      </table>
+    </section>
+
+    <section>
+      <h2>Wie die Wohnung aufgebaut ist</h2>
+      <ul>
+        <li>Die Wohnungstür liegt in der Nordwand des Flurs. Rechts folgen zuerst das WC, dann das Bad, in der Westwand des Flurs die Tür zum Schlafzimmer.</li>
+        <li>Eine zweiflügelige Schiebetür trennt Flur und Wohnraum.</li>
+        <li>Das Schlafzimmer hat zwei Einzelbetten mit rund 2 m Platz dazwischen und eine Schiebetür zum Westbalkon. Der Balkon reicht etwa 1 m über das Schlafzimmer hinaus.</li>
+        <li>Die Küche hat nur ein Fenster. Der Tresen mit Spüle läuft an ihrer Südseite entlang und schwingt asymmetrisch um die Südostecke.</li>
+        <li>Die Sitzgrube liegt in der Südostecke des Wohnraums. Die zwei Ausziehbetten (80 × 200) fahren nach Norden aus und reichen ausgezogen bis etwa auf Höhe der Küche.</li>
+        <li>Auf der Westseite des Wohnraums gibt es nur das Panoramafenster am Esstisch. Alle Balkontüren sind Schiebetüren.</li>
+      </ul>
+      <h2 style="margin-top:22px">Was geschätzt ist</h2>
+      <ul>
+        <li>Die genaue Lage des Küchenfensters.</li>
+        <li>Alle Maße. Sie leiten sich aus Betten, Türbreiten und der 90er Duschtasse ab und können um einen halben Meter abweichen.</li>
+      </ul>
+    </section>
+  </div>
+</div>

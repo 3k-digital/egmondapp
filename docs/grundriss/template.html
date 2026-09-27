@@ -1,0 +1,155 @@
+<title>Grundriss Egmond</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Instrument+Sans:wght@400;500;600&display=swap">
+<style>
+:root{
+  --paper:#eef1ef; --sheet:#f7f8f6; --ink:#1f2c36; --graphite:#5d6972;
+  --pencil:#2c6db0; --poche-bg:#d5dbdb; --rule:#c9d0cf; --muted:#56626b;
+  --hand:'Architects Daughter','Comic Sans MS','Segoe Print',cursive;
+  --sans:'Instrument Sans','Segoe UI',system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#14191d; --sheet:#1a2126; --ink:#e3e9ec; --graphite:#96a3ab;
+    --pencil:#86b8ea; --poche-bg:#2b343a; --rule:#2e383e; --muted:#9aa7ae;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#14191d; --sheet:#1a2126; --ink:#e3e9ec; --graphite:#96a3ab;
+  --pencil:#86b8ea; --poche-bg:#2b343a; --rule:#2e383e; --muted:#9aa7ae;
+  color-scheme:dark;
+}
+body{background:var(--paper);color:var(--ink);font:15px/1.55 var(--sans);padding-inline:16px;padding-block:28px 48px}
+.wrap{max-width:980px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+header{display:flex;flex-direction:column;gap:6px}
+.eyebrow{font:500 12px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h1{font:400 clamp(28px,5vw,40px)/1.1 var(--hand);margin:0;text-wrap:balance}
+.lede{margin:0;max-width:62ch;color:var(--muted)}
+figure{margin:0;background:var(--sheet);border:1px solid var(--rule);border-radius:4px;display:flex;flex-direction:column}
+.plan{overflow-x:auto;padding:12px 8px 0}
+.plan svg{display:block;width:100%;min-width:600px;height:auto;margin:0 auto;max-width:860px}
+.titleblock{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));border-top:1px solid var(--rule)}
+.titleblock div{padding:10px 14px;border-right:1px solid var(--rule);display:flex;flex-direction:column;gap:2px}
+.titleblock div:last-child{border-right:0}
+.titleblock span{font:500 10.5px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.titleblock b{font:400 15px var(--hand)}
+figcaption{padding:12px 14px 14px;border-top:1px solid var(--rule);color:var(--muted);font-size:14px}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px}
+h2{font:400 22px var(--hand);margin:0 0 10px}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:7px 8px 7px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font:500 11px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+td.num{white-space:nowrap}
+td.ph{color:var(--muted);font-size:13.5px}
+tfoot td{border-bottom:0;font-weight:600}
+ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px}
+.unsure-k{color:var(--pencil)}
+.key{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:13.5px;color:var(--muted);padding:0 14px 12px}
+.key s{display:inline-block;width:22px;height:0;border-top:2px dotted var(--pencil);vertical-align:middle;margin-right:6px}
+.key i{display:inline-block;width:22px;height:0;border-top:1.5px dashed var(--pencil);vertical-align:middle;margin-right:6px}
+.key em{font-style:normal;display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:16px;border:1.2px solid var(--pencil);border-radius:9px;color:var(--pencil);font-size:10px;margin-right:6px;padding:0 3px}
+
+/* plan drawing */
+.wall{fill:url(#poche);stroke:var(--ink);stroke-width:1.4}
+.brick{fill:url(#poche);stroke:var(--ink);stroke-width:1.1}
+.pocheBg{fill:var(--poche-bg)}
+.pocheLn{stroke:var(--ink);stroke-width:.7;opacity:.5}
+.thin{fill:var(--sheet);stroke:var(--ink);stroke-width:.9}
+.leaf{stroke:var(--ink);stroke-width:1.7}
+.swing{fill:none;stroke:var(--graphite);stroke-width:.8;stroke-dasharray:3 2}
+.panel{fill:var(--sheet);stroke:var(--ink);stroke-width:1}
+.furn{fill:var(--sheet);stroke:var(--graphite);stroke-width:1}
+.furn2{fill:none;stroke:var(--graphite);stroke-width:.8}
+.deck{fill:url(#deck)}
+.deckLn{stroke:var(--graphite);stroke-width:.5;opacity:.55}
+.rail{stroke:var(--ink);stroke-width:1.2;stroke-dasharray:9 2 1.5 2}
+.awning{fill:none;stroke:var(--graphite);stroke-width:.8;stroke-dasharray:6 4}
+.pit{fill:url(#dots);stroke:var(--graphite);stroke-width:1}
+.dotFill{fill:var(--graphite);opacity:.55}
+.grille{fill:url(#grill);stroke:var(--graphite);stroke-width:.6}
+.unsure{fill:none;stroke:var(--pencil);stroke-width:1.3;stroke-dasharray:5 4}
+.noteline{stroke:var(--pencil);stroke-width:1}
+.note{fill:var(--pencil);font:13px var(--hand)}
+.note2{fill:var(--graphite);font:12.5px var(--hand)}
+.room{fill:var(--ink);font:15.5px var(--hand)}
+.area{fill:var(--graphite);font:11.5px var(--hand)}
+.tiny{fill:var(--graphite);font:10px var(--hand)}
+.dim{stroke:var(--graphite);stroke-width:.7}
+.dimtick{stroke:var(--ink);stroke-width:1.3}
+.dimtxt{fill:var(--graphite);font:11px var(--hand)}
+.constr{stroke:var(--graphite);stroke-width:.5;opacity:.7}
+.surround{fill:var(--pencil);font:12.5px var(--hand);letter-spacing:.12em}
+.cam{fill:var(--sheet);stroke:var(--pencil);stroke-width:1.1}
+.camtxt{fill:var(--pencil);font:600 8.5px var(--sans)}
+.camray{stroke:var(--pencil);stroke-width:1.1}
+.camHeadFill{fill:var(--pencil)}
+.bedout{fill:none;stroke:var(--graphite);stroke-width:1;stroke-dasharray:4 3}
+.route{fill:none;stroke:var(--pencil);stroke-width:1.3;stroke-dasharray:1.5 4;stroke-linecap:round}
+.solid{fill:var(--ink)}
+.hollow{fill:var(--sheet);stroke:var(--ink);stroke-width:1}
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Egmond aan Zee · Kennedyboulevard · 2. Etage</span>
+    <h1>Grundriss der Ferienwohnung</h1>
+    <p class="lede">Rekonstruiert aus den Fotos der Galerie und aus Ortskenntnis, weil die Originalpläne von 1970 fehlen. Die Maße sind aus Möbeln geschätzt.</p>
+  </header>
+
+  <figure>
+    <div class="plan">
+<!--SVG-->
+    </div>
+    <div class="key">
+      <span><em>8</em>Standpunkt und Blickrichtung von Foto innen-8</span>
+      <span><s></s>Weg von der Wohnungstür: rechts WC, dann Bad</span>
+      <span><i></i>Lage geschätzt</span>
+    </div>
+    <div class="titleblock">
+      <div><span>Plan</span><b>Grundriss, Norden oben</b></div>
+      <div><span>Grundlage</span><b>Galeriefotos und Ortskenntnis</b></div>
+      <div><span>Maßbezug</span><b>Bett 90 × 200, Tür 80 cm</b></div>
+      <div><span>Stand</span><b>27.09.2026, Skizze v3</b></div>
+    </div>
+    <figcaption>Die Wohnung ist abgestuft: Im Norden liegen Schlafzimmer, Bad, WC und der Flur mit der Wohnungstür nebeneinander. Eine zweiflügelige Schiebetür trennt den Flur vom Wohnraum. Darunter liegen die Küche mit geschwungenem Tresen und der Wohn- und Essraum, dessen Südbalkon über die ganze Breite der Südfassade läuft.</figcaption>
+  </figure>
+
+  <div class="cols">
+    <section>
+      <h2>Räume</h2>
+      <table>
+        <thead><tr><th>Raum</th><th>Fläche</th><th>Belegfotos</th></tr></thead>
+        <tbody>
+          <tr><td>Wohnen · Essen mit Sitzgrube</td><td class="num">ca. 35 m²</td><td class="ph">innen-2, -3, -4, -5</td></tr>
+          <tr><td>Schlafzimmer</td><td class="num">ca. 14 m²</td><td class="ph">innen-8, -9</td></tr>
+          <tr><td>Küche mit Bartresen</td><td class="num">ca. 8 m²</td><td class="ph">innen-1, -2</td></tr>
+          <tr><td>Flur</td><td class="num">ca. 11,5 m²</td><td class="ph">innen-13, -14</td></tr>
+          <tr><td>Bad</td><td class="num">ca. 3 m²</td><td class="ph">innen-10, -12</td></tr>
+          <tr><td>WC</td><td class="num">ca. 2 m²</td><td class="ph">innen-11</td></tr>
+          <tr><td>Südbalkon</td><td class="num">ca. 13 m²</td><td class="ph">innen-5, -6, -7</td></tr>
+          <tr><td>Westbalkon</td><td class="num">ca. 7,5 m²</td><td class="ph">innen-8</td></tr>
+        </tbody>
+        <tfoot><tr><td>Wohnfläche innen</td><td class="num">ca. 75 m²</td><td></td></tr></tfoot>
+      </table>
+    </section>
+
+    <section>
+      <h2>Wie die Wohnung aufgebaut ist</h2>
+      <ul>
+        <li>Die Wohnungstür liegt in der Nordwand des Flurs. Rechts folgen zuerst das WC, dann das Bad, in der Westwand des Flurs die Tür zum Schlafzimmer.</li>
+        <li>Eine zweiflügelige Schiebetür trennt Flur und Wohnraum.</li>
+        <li>Das Schlafzimmer hat zwei Einzelbetten mit rund 2 m Platz dazwischen und eine Schiebetür zum Westbalkon. Der Balkon reicht etwa 1 m über das Schlafzimmer hinaus.</li>
+        <li>Die Küche hat nur ein Fenster. Der Tresen mit Spüle läuft an ihrer Südseite entlang und schwingt asymmetrisch um die Südostecke.</li>
+        <li>Die Sitzgrube liegt in der Südostecke des Wohnraums. Die zwei Ausziehbetten (80 × 200) fahren nach Norden aus und reichen ausgezogen bis etwa auf Höhe der Küche.</li>
+        <li>Auf der Westseite des Wohnraums gibt es nur das Panoramafenster am Esstisch. Alle Balkontüren sind Schiebetüren.</li>
+      </ul>
+      <h2 style="margin-top:22px">Was geschätzt ist</h2>
+      <ul>
+        <li>Die genaue Lage des Küchenfensters.</li>
+        <li>Alle Maße. Sie leiten sich aus Betten, Türbreiten und der 90er Duschtasse ab und können um einen halben Meter abweichen.</li>
+      </ul>
+    </section>
+  </div>
+</div>
